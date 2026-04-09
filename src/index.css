@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border-light rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-muted;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-card rounded-xl border border-border shadow-card;
+  }
+
+  .metric-card {
+    @apply card p-5 flex flex-col gap-1;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold text-text-primary mb-4;
+  }
+
+  .label {
+    @apply text-sm font-medium text-text-secondary;
+  }
+
+  .input-base {
+    @apply w-full bg-bg-tertiary border border-border rounded-lg px-3 py-2
+           text-text-primary placeholder-text-muted text-sm
+           focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue
+           transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-accent-green hover:bg-accent-green-dim text-white font-medium
+           px-4 py-2 rounded-lg text-sm transition-colors disabled:opacity-40
+           disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-tertiary hover:bg-border text-text-primary font-medium
+           px-4 py-2 rounded-lg text-sm border border-border transition-colors;
+  }
+
+  .btn-ghost {
+    @apply text-text-secondary hover:text-text-primary hover:bg-bg-tertiary
+           px-3 py-2 rounded-lg text-sm transition-colors;
+  }
+
+  .chip {
+    @apply px-3 py-1 rounded-full text-xs font-medium border cursor-pointer
+           transition-all select-none;
+  }
+
+  .chip-default {
+    @apply chip border-border text-text-secondary hover:border-border-light hover:text-text-primary;
+  }
+
+  .chip-selected {
+    @apply chip border-accent-green text-accent-green bg-accent-green/10;
+  }
+
+  .tag-confusion {
+    @apply chip border-accent-amber text-accent-amber;
+  }
+
+  .tag-delight {
+    @apply chip border-accent-green text-accent-green;
+  }
+
+  .tag-error {
+    @apply chip border-accent-red text-accent-red;
+  }
+
+  .tag-question {
+    @apply chip border-accent-blue text-accent-blue;
+  }
+
+  .badge-excellent { @apply text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green; }
+  .badge-good      { @apply text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-blue/20 text-accent-blue; }
+  .badge-okay      { @apply text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-amber/20 text-accent-amber; }
+  .badge-poor      { @apply text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red; }
+}
