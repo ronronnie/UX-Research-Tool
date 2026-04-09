@@ -6,8 +6,14 @@ import App from './App.jsx'
 import { useStore } from './store/useStore.js'
 import './index.css'
 
-// Seed localStorage on first load (only if empty)
-useStore.getState().initSeed()
+// Seed DB + load sessions on startup
+async function init() {
+  const { initSeed, loadSessions } = useStore.getState()
+  await initSeed()
+  await loadSessions()
+}
+
+init()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
