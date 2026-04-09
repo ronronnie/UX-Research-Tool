@@ -71,7 +71,7 @@ export const PHASE2_QUESTIONS = [
   },
   {
     id: 'p2q4',
-    text: 'What did you expect to see that you didn't?',
+    text: "What did you expect to see that you didn't?",
     type: 'text',
     hasTags: true,
     presets: [],
