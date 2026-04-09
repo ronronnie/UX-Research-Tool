@@ -3,7 +3,7 @@ import Card from './Card.jsx'
 
 /**
  * Summary metric card used on Dashboard and Analytics.
- * Props: title, value, subtitle, icon, trend, colorKey (green/amber/red/blue/purple/default)
+ * Props: title, value, subtitle, icon, trend, tooltip, colorKey (green/amber/red/blue/purple/default)
  */
 export default function MetricCard({
   title,
@@ -11,6 +11,7 @@ export default function MetricCard({
   subtitle,
   icon,
   trend,
+  tooltip,
   colorKey = 'default',
   className = '',
 }) {
@@ -35,7 +36,31 @@ export default function MetricCard({
   return (
     <Card className={clsx('flex flex-col gap-3', className)}>
       <div className="flex items-start justify-between">
-        <span className="text-sm font-medium text-text-secondary">{title}</span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-sm font-medium text-text-secondary">{title}</span>
+          {tooltip && (
+            <div className="relative group/tip">
+              <span className="w-4 h-4 rounded-full border border-border text-text-muted
+                               flex items-center justify-center text-[10px] font-bold
+                               cursor-default hover:border-accent-blue hover:text-accent-blue
+                               transition-colors select-none">
+                ?
+              </span>
+              {/* Tooltip box */}
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56
+                              bg-bg-card border border-border rounded-lg px-3 py-2 shadow-card
+                              text-xs text-text-secondary leading-relaxed
+                              opacity-0 pointer-events-none
+                              group-hover/tip:opacity-100
+                              transition-opacity duration-150 z-50">
+                {tooltip}
+                {/* Arrow */}
+                <span className="absolute top-full left-1/2 -translate-x-1/2 border-4
+                                 border-transparent border-t-border" />
+              </div>
+            </div>
+          )}
+        </div>
         {icon && (
           <span className={clsx('w-8 h-8 rounded-lg flex items-center justify-center text-base', ICON_BG[colorKey] ?? ICON_BG.default)}>
             {icon}

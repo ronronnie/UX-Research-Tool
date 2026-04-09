@@ -156,6 +156,7 @@ export default function Dashboard() {
           value={totalSessions}
           icon="♠"
           colorKey="default"
+          tooltip="The total number of user testing sessions logged in this tool."
         />
         <MetricCard
           title="Avg SUS Score"
@@ -167,6 +168,7 @@ export default function Dashboard() {
             susGrade.key === 'good'      ? 'blue'  :
             susGrade.key === 'okay'      ? 'amber' : 'red'
           }
+          tooltip="System Usability Scale (SUS) — a 0–100 score measuring how easy the product feels to use. Above 80 is Excellent, above 68 is Good, the industry average is 68."
         />
         <MetricCard
           title="Avg NPS Score"
@@ -177,6 +179,7 @@ export default function Dashboard() {
             npsAvg >= 8 ? 'green' :
             npsAvg >= 6 ? 'amber' : 'red'
           }
+          tooltip="Net Promoter Score (NPS) — how likely participants are to recommend the product. 9–10 = Promoter, 7–8 = Passive, 0–6 = Detractor."
         />
         <MetricCard
           title="Task Completion"
@@ -187,6 +190,7 @@ export default function Dashboard() {
             completionRate >= 80 ? 'green' :
             completionRate >= 60 ? 'amber' : 'red'
           }
+          tooltip="The percentage of assigned tasks that participants fully completed across all sessions. Higher is better — below 60% usually signals a usability problem."
         />
         <MetricCard
           title="Avg Retention"
@@ -197,6 +201,7 @@ export default function Dashboard() {
             retentionAvg >= 8 ? 'green' :
             retentionAvg >= 5 ? 'amber' : 'red'
           }
+          tooltip="How likely participants say they are to use this product instead of their current tools (1–10). Measures intent to switch, not just satisfaction."
         />
       </div>
 
