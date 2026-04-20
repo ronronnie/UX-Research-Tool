@@ -60,20 +60,19 @@ export const useStore = create(
         }
       },
 
-      // ── Seed DB on first load (only if empty) ────────────────────────────────
+      // ── Seed DB on first load ─────────────────────────────────────────────────
+      // Uses upsert with ignoreDuplicates so it is safe to run every startup.
+      // Existing rows are left untouched; only missing ones are inserted.
       initSeed: async () => {
-        const { count } = await supabase
+        const rows = SEED_SESSIONS.map(s => ({
+          id: s.id,
+          created_at: s.created_at,
+          data: s,
+        }))
+        const { error } = await supabase
           .from('sessions')
-          .select('id', { count: 'exact', head: true })
-        if (count === 0) {
-          const rows = SEED_SESSIONS.map(s => ({
-            id: s.id,
-            created_at: s.created_at,
-            data: s,
-          }))
-          await supabase.from('sessions').insert(rows)
-          set({ sessions: SEED_SESSIONS })
-        }
+          .upsert(rows, { onConflict: 'id', ignoreDuplicates: true })
+        if (error) console.error('initSeed error:', error.message)
       },
 
       // ── CRUD ─────────────────────────────────────────────────────────────────
